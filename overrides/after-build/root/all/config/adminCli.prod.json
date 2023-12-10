@@ -2,9 +2,6 @@
     "profile": "prod",
     "adminWritable": true,
     "availableCommands": {
-        "generateSitemap": [
-            "*"
-        ]
     },
     "preparedCommands": {
         "prepareAppEnv": {

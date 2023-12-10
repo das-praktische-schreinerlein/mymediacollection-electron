@@ -1,4 +1,4 @@
-# What is MySimpleHomePage-Electron-App
+# What is MyMediaCollection-Electron-App
 
 MySimpleHomePage-Electron-App is a portal-app with a bunch of different page types and features:
 

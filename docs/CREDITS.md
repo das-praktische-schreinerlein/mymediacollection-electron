@@ -1,4 +1,4 @@
-# credits for used libraries of MySimpleHomePage-Electron-App
+# credits for used libraries of MyMediaCollection-Electron-App
 
 MySimpleHomePage-Electron-App uses a bunch of libraries and tools. Many thanx to the people behind these projects.
 

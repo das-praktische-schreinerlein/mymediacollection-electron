@@ -3,101 +3,68 @@
     "commandConfig": {
         "adminWritable": true,
         "preparedCommands": {
-            "PUBLISH Pages: exportPagesToServerConfig": {
-                "description": "export pages to server-configs",
+            "IMPORT: importMedia": {
+                "description": "import media from media-directory",
                 "commands": [
                     {
                         "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
+                            "command": "mediaManager",
+                            "action": "generateMediaDocsFromMediaDir",
                             "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-de",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_dev,profile_prod",
-                            "langkeys": "lang_de"
+                            "importMappingFile": "../../../config/import-mapping.json",
+                            "importDir": "../../../filestore/Musike/",
+                            "outputFile": "../../../filestore/Musike/mediadb_import-import-files.json",
+                            "renameFileIfExists": true
                         }
                     },
                     {
                         "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
+                            "command": "loadMediaDoc",
+                            "action": "loadDocs",
                             "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-dev-de",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_dev",
-                            "langkeys": "lang_de"
+                            "file": "../../../filestore/Musike/mediadb_import-import-files.json",
+                            "renameFileAfterSuccess": true
                         }
                     },
                     {
                         "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
+                            "command": "mediaManager",
+                            "action": "readMp3MetaData",
                             "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-prod-de",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_prod",
-                            "langkeys": "lang_de"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-en",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_dev,profile_prod",
-                            "langkeys": "lang_en"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-dev-en",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_dev",
-                            "langkeys": "lang_en"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs-prod-en",
-                            "exportDir": "../../../config/",
-                            "profiles": "profile_prod",
-                            "langkeys": "lang_en"
+                            "parallel": 1,
+                            "ignoreErrors": 1000
                         }
                     }
                 ]
             },
-            "PUBLISH Pages: exportPagesToDist": {
-                "description": "export pages to dist",
+            "EXPORT: exportMediaFavorites": {
+                "description": "export media-favorites to export-media-directory",
                 "commands": [
                     {
                         "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
+                            "command": "mediaManager",
+                            "action": "exportAudioFiles",
                             "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs",
-                            "exportDir": "dist/static/myshpviewer/de/assets/",
-                            "profiles": "profile_static",
-                            "langkeys": "lang_de"
+                            "exportName": "favorites-all",
+                            "exportDir": "../../../filestore/export/favorites",
+                            "directoryProfile": "default",
+                            "fileNameProfile": "default",
+                            "parallel": 1,
+                            "rateMinFilter": "",
+                            "playlists": "Favorites",
+                            "showNonBlockedOnly": "showall"
                         }
                     },
                     {
                         "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocViewerFile",
+                            "command": "mediaManager",
+                            "action": "generateHtmlViewerFileForExport",
                             "backend": "../../../config/backend.dev.json",
-                            "exportName": "static.myshppdocs",
-                            "exportDir": "dist/static/myshpviewer/de/assets/staticdata/",
-                            "exportId": "assets/staticdata/static.myshppdocs.js",
-                            "profiles": "profile_viewer",
-                            "langkeys": "lang_de"
+                            "exportName": "favorites-all",
+                            "exportDir": "../../../filestore/export/favorites/",
+                            "createViewer": "html",
+                            "srcFile": "dist/static/mymmviewer/de/index.viewer.full.html",
+                            "srcFiles": "../../../filestore/export/favorites/favorites-all.mdocsexport.json"
                         }
                     },
                     {
@@ -105,76 +72,7 @@
                             "command": "mediaManager",
                             "action": "inlineDataOnViewerFile",
                             "backend": "../../../config/backend.dev.json",
-                            "inlineProfile": "all",
-                            "srcFile": "dist/static/myshpviewer/de/index.viewer.html",
-                            "outputFile": "dist/static/myshpviewer/de/index.viewer.full.html"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs",
-                            "exportDir": "dist/static/myshpdev/de/assets/",
-                            "profiles": "profile_static",
-                            "langkeys": "lang_de"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocViewerFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "static.myshppdocs",
-                            "exportDir": "dist/static/myshpdev/de/assets/staticdata/",
-                            "exportId": "assets/staticdata/static.myshppdocs.js",
-                            "profiles": "profile_static",
-                            "langkeys": "lang_de"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "pdocs",
-                            "exportDir": "dist/static/myshp/de/assets/",
-                            "profiles": "profile_static",
-                            "langkeys": "lang_de"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "pageManager",
-                            "action": "exportPDocViewerFile",
-                            "backend": "../../../config/backend.dev.json",
-                            "exportName": "static.myshppdocs",
-                            "exportDir": "dist/static/myshp/de/assets/staticdata/",
-                            "exportId": "assets/staticdata/static.myshppdocs.js",
-                            "profiles": "profile_static",
-                            "langkeys": "lang_de"
-                        }
-                    }
-                ]
-            },
-            "generateSitemap": {
-                "description": "generate sitemaps",
-                "commands": [
-                    {
-                        "parameters": {
-                            "command": "generateSitemap",
-                            "action": "generateSitemap",
-                            "backend": "../../../config/backend.dev.json",
-                            "sitemap": "../../../config/sitemap-dev-de.json"
-                        }
-                    },
-                    {
-                        "parameters": {
-                            "command": "generateSitemap",
-                            "action": "generateSitemap",
-                            "backend": "../../../config/backend.dev.json",
-                            "sitemap": "../../../config/sitemap-dev-en.json"
+                            "srcFile": "../../../filestore/export/favorites/favorites-all.html"
                         }
                     }
                 ]
@@ -188,11 +86,17 @@
             "sitemap": "../../../config/sitemap-de.json"
         }
     },
+    "importDir": "notexists",
+    "exportDir": "notexists",
+    "exportName": "notexists",
     "outputDir": "notexists",
     "outputFile": "notexists",
+    "publishConfigFile": "notexists",
+    "srcBaseUrl": "notexists",
+    "destBaseUrl": "notexists",
     "backend": "../../../config/backend.dev.json",
     "sitemap": "../../../config/sitemap-de.json",
-    "port": 5190,
+    "port": 6190,
     "bindIp": "127.0.0.1",
     "corsOrigin": true
 }

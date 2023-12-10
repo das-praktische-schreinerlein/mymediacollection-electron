@@ -1,12 +1,12 @@
 {
-  "name": "mysimplehomepage-electron",
-  "version": "2.0.0",
+  "name": "mymediacollection-electron",
+  "version": "1.0.0",
   "description": "MyCmsElectron-Builder",
   "config": {
-    "mycmsgiturl": "F:\\Projekte\\mysimplehomepage\\.git",
-    "mycmsgitversion": "release-5",
-    "XXXXXmycmsgiturl": "https://github.com/das-praktische-schreinerlein/mysimplehomepage.git",
-    "XXXXXmycmsgitversion": "5.0.0"
+    "mycmsgiturl": "F:\\Projekte\\mymediacollection_dev\\.git",
+    "mycmsgitversion": "working",
+    "XXXXXmycmsgiturl": "https://github.com/das-praktische-schreinerlein/mymediacollection.git",
+    "XXXXXmycmsgitversion": "1.0.0"
   },
   "scripts": {
     "all": "npm install && npm run install-appbackend && npm run all-apponly",
@@ -23,7 +23,7 @@
     "install-appbackend-prepare": "npm run install-appbackend-src && npm run install-appbackend-checkout && npm run install-appbackend-copy-overrides && cd app-backend-src && npm install && npm prune",
     "install-appbackend-package": "npm run install-appbackend-build && npm run install-appbackend-cleanout && npm run install-appbackend-package-dist && npm run install-appbackend-package-sbin && npm run install-appbackend-package-installer && npm run install-appbackend-package-migrations",
     "install-appbackend-package-dist": "cpx --include-empty-dirs --verbose \"app-backend-src/dist/**/*\" app-backend/dist/ && cpx --include-empty-dirs --verbose \"app-backend-src/package-dist.json\" app-backend/ && mv app-backend/package-dist.json app-backend/package.json",
-    "install-appbackend-package-installer": "cpx --include-empty-dirs --verbose \"app-backend-src/installer/db/sqlite/myshpexportdb/**/*\" app-backend/installer/db/sqlite/myshpexportdb/",
+    "install-appbackend-package-installer": "cpx --include-empty-dirs --verbose \"app-backend-src/installer/db/sqlite/mediadbexportdb/**/*\" app-backend/installer/db/sqlite/mediadbexportdb/",
     "install-appbackend-package-migrations": "cpx --include-empty-dirs --verbose \"app-backend-src/migrations/**/*\" app-backend/migrations/",
     "install-appbackend-package-sbin": "cpx --include-empty-dirs --verbose \"app-backend-src/sbin/**/*\" app-backend/sbin/",
     "install-appbackend-cleanout": "cross-os install-appbackend-cleanout-os",
@@ -33,7 +33,7 @@
       "win32": "node_modules\\.bin\\rimraf app-backend-src/dist/tsc*"
     },
     "install-appbackend-copy-overrides": "cpx --include-empty-dirs --verbose \"overrides/app-backend-src/**/*\" app-backend-src/",
-    "install-appbackend-solr": "cd app-backend-src && npm run install-solr",
+    "install-appbackend-solr": "cd app-backend-src && npm install && npm run install-solr",
     "install-appbackend-build": "cd app-backend-src && npm run backend-test && npm run testCoverage && npm run backend-build && npm run build-viewer-de && npm run build-dev && npm run frontendserver-build-dev-de && npm run frontendserver-build-server-dev-de && npm run frontendserver-build-angularserver-dev-de && npm run frontendserver-build-admin-dev-de && npm run build-prod && npm run frontendserver-build-prod-de && npm run frontendserver-build-server-prod-de && npm run frontendserver-build-angularserver-prod-de && npm run frontendserver-build-admin-prod-de",
     "install-appbackend-checkout": "cross-var git clone -b $npm_package_config_mycmsgitversion --single-branch --depth 1 $npm_package_config_mycmsgiturl app-backend-src",
     "install-appbackend-src": "cross-os install-appbackend-src-os",
@@ -51,15 +51,15 @@
     },
     "del-env-dev": "cross-os del-env-dev-os",
     "del-env-dev-os": {
-      "darwin": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-dev-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/myshpdev-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static/myshpdev && ./node_modules/.bin/rimraf dist/database/*.dev.* && ./node_modules/.bin/rimraf dist/config/*.dev.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*dev*",
-      "linux": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-dev-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/myshpdev-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static/myshpdev && ./node_modules/.bin/rimraf dist/database/*.dev.* && ./node_modules/.bin/rimraf dist/config/*.dev.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*dev*",
-      "win32": ".\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\frontendserver-dev-de && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\myshpdev-server && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\static\\myshpdev && .\\node_modules\\.bin\\rimraf dist\\database\\*.dev.* && .\\node_modules\\.bin\\rimraf dist\\config\\*.dev.* && .\\node_modules\\.bin\\rimraf dist\\contrib\\solr\\server\\solr\\*dev*"
+      "darwin": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-dev-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/mymmdev-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static/mymmdev && ./node_modules/.bin/rimraf dist/database/*.dev.* && ./node_modules/.bin/rimraf dist/config/*.dev.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*dev*",
+      "linux": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-dev-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/mymmdev-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static/mymmdev && ./node_modules/.bin/rimraf dist/database/*.dev.* && ./node_modules/.bin/rimraf dist/config/*.dev.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*dev*",
+      "win32": ".\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\frontendserver-dev-de && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\mymmdev-server && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\static\\mymmdev && .\\node_modules\\.bin\\rimraf dist\\database\\*.dev.* && .\\node_modules\\.bin\\rimraf dist\\config\\*.dev.* && .\\node_modules\\.bin\\rimraf dist\\contrib\\solr\\server\\solr\\*dev*"
     },
     "del-env-prod": "cross-os del-env-prod-os",
     "del-env-prod-os": {
-      "darwin": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist//myshp-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static//myshp && ./node_modules/.bin/rimraf dist/database/*.prod.* && ./node_modules/.bin/rimraf dist/config/*.prod.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*prod*",
-      "linux": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist//myshp-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static//myshp && ./node_modules/.bin/rimraf dist/database/*.prod.* && ./node_modules/.bin/rimraf dist/config/*.prod.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*prod*",
-      "win32": ".\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\frontendserver-de && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\/myshp-server && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\static\\/myshp && .\\node_modules\\.bin\\rimraf dist\\database\\*.prod.* && .\\node_modules\\.bin\\rimraf dist\\config\\*.prod.* && .\\node_modules\\.bin\\rimraf dist\\contrib\\solr\\server\\solr\\*prod*"
+      "darwin": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist//mymm-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static//mymm && ./node_modules/.bin/rimraf dist/database/*.prod.* && ./node_modules/.bin/rimraf dist/config/*.prod.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*prod*",
+      "linux": "./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/frontendserver-de && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist//mymm-server && ./node_modules/.bin/rimraf dist/mycms-electron-app-win32-x64/resources/app-backend/dist/static//mymm && ./node_modules/.bin/rimraf dist/database/*.prod.* && ./node_modules/.bin/rimraf dist/config/*.prod.* && ./node_modules/.bin/rimraf dist/contrib/solr/server/solr/*prod*",
+      "win32": ".\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\frontendserver-de && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\/mymm-server && .\\node_modules\\.bin\\rimraf dist\\mycms-electron-app-win32-x64\\resources\\app-backend\\dist\\static\\/mymm && .\\node_modules\\.bin\\rimraf dist\\database\\*.prod.* && .\\node_modules\\.bin\\rimraf dist\\config\\*.prod.* && .\\node_modules\\.bin\\rimraf dist\\contrib\\solr\\server\\solr\\*prod*"
     },
     "del-packageddist-solr": "cross-os del-packageddist-solr-os",
     "del-packageddist-solr-os": {

@@ -1,6 +1,10 @@
 {
-    "myshpdb_sqlite3": {
+    "mediadb_sqlite3": {
         "driver": "sqlite3",
-        "filename": "../../../database/myshp.dev.sqlite"
+        "filename": "../../../database/mymmdb.dev.sqlite"
+    },
+    "mediadbprod_sqlite3": {
+        "driver": "sqlite3",
+        "filename": "../../../database/mymmdb.dev.sqlite"
     }
 }

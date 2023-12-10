@@ -1,8 +1,8 @@
 {
-    "frontendStartUrl": "http://localhost:5001/myshpdev/de/",
-    "adminServerBackendCheckUrl": "http://localhost:5190/adminapi/v1/de/status",
-    "backendCheckUrl": "http://localhost:5100/api/v1/de/pages/",
-    "backendStaticBaseUrl": "http://localhost:5100/api/static/",
+    "frontendStartUrl": "http://localhost:6301/mymmdev/de/",
+    "adminServerBackendCheckUrl": "http://localhost:6190/adminapi/v1/de/status",
+    "backendCheckUrl": "http://localhost:6100/api/v1/de/mdocsearch?perPage=2&pageNum=1&type=audio",
+    "backendStaticBaseUrl": "http://localhost:6100/api/static/",
     "adminServerBackendRequirePath": "../app-backend/dist/backend/adminServer",
     "backendRequirePath": "../app-backend/dist/backend/backend",
     "frontendServerRequirePath": "../app-backend/dist/frontendserver-dev-de/frontendserver",

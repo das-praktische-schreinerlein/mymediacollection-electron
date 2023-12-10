@@ -1,6 +1,7 @@
-# MySimpleHomePage-Electron-App
+# MyMediaCollection-Electron-App
 
-MySimpleHomePage-Electron-App is a simple starter for your electron-application.
+MyMediaCollection is an application for managing your media-resources as audio, video.
+It's based on mymediacollection and mysimplehomepage-electron.
 
 **But be aware: it start's a local server with default-passwords!!!!!**
 

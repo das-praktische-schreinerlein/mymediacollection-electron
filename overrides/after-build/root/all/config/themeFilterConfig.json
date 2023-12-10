@@ -1,2 +1,4 @@
 {
+  "punk": { "genre_txt": { "in": ["Punk", "PunkRock", "PunknRoll", "Folk-Punk"] } },
+  "hardcore": { "genre_txt": { "in": ["Hardcore"] } }
 }

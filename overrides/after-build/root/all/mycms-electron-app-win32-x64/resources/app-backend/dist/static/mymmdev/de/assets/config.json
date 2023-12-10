@@ -1,0 +1,1665 @@
+{
+    "components": {
+        "cdoc-assignplaylistform": {
+        },
+        "cdoc-linked-playlists": {
+            "appendAvailable": true,
+            "editAvailable": true,
+            "showAvailable": true
+        },
+        "mdoc-keywords": {
+            "editPrefix": "KW_",
+            "possiblePrefixes": ["KW_", "", "kw_", "Genre_", "Artist_"],
+            "structuredKeywords": [
+                {"name": "ToDos", "keywords": ["KW_TODOGENRE", "KW_TODOARTIST", "KW_TODOALBUM", "KW_TODOTITLE", "KW_TODOKEYWORDS"]},
+                {"name": "Tempo", "keywords": ["Langsam", "MidTemp", "Schnell"]},
+                {"name": "Stimmung", "keywords": ["Aggressiv", "Fröhlich", "Lustig", "Traurig"]},
+                {"name": "Länge", "keywords": ["kurz", "normal", "lang"]}
+            ],
+            "keywordSuggestions": [
+                {   "name": "Länge kurz", "keywords": ["kurz"],
+                    "filters": [{ "property": "subtype", "command": "LE", "expectedValues": ["120"]}]
+                },
+                {   "name": "Länge normal", "keywords": ["normal"],
+                    "filters": [{ "property": "subtype", "command": "LE", "expectedValues": ["120"]}, { "property": "subtype", "command": "GE", "expectedValues": ["240"]}]
+                },
+                {   "name": "Länge normal", "keywords": ["lang"],
+                    "filters": [{ "property": "subtype", "command": "GE", "expectedValues": ["240"]}]
+                }
+            ],
+            "blacklist": ["OFFEN", "KW_TODOGENRE", "KW_TODOARTIST", "KW_TODOALBUM", "KW_TODOTITLE", "KW_TODOKEYWORDS"]
+        },
+        "cdoc-listheader": {
+            "allowAutoplay": true
+        },
+        "mdoc-actions": {
+            "actionTags": [
+                {
+                    "key": "playlists_favorites",
+                    "type": "tag",
+                    "name": "F2* Favorites",
+                    "shortName": "F2*",
+                    "payload": {
+                        "playlistkey": "Favorites",
+                        "mdocratepers.gesamt": "5"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_favorites_plus",
+                    "type": "tag",
+                    "name": "F2*+ Favorites+",
+                    "shortName": "F2*+",
+                    "payload": {
+                        "playlistkey": "Favorites",
+                        "mdocratepers.gesamt": "6"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Favorites"]
+                        },
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [6]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_album_favorites",
+                    "type": "tag",
+                    "name": "F3* Album Favorites",
+                    "shortName": "F3*",
+                    "payload": {
+                        "playlistkey": "Album_Favorites",
+                        "mdocratepers.gesamt": "8"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Album_Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_artist_favorites",
+                    "type": "tag",
+                    "name": "F3++ Artist Favorites",
+                    "shortName": "F3++",
+                    "payload": {
+                        "playlistkey": "Artist_Favorites",
+                        "mdocratepers.gesamt": "9"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Artist_Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_ok",
+                    "type": "tag",
+                    "name": "OK",
+                    "shortName": "OK",
+                    "payload": {
+                        "ratekey": "gesamt",
+                        "value": "2"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [2]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_favorite",
+                    "type": "tag",
+                    "name": "F2+ Favorite",
+                    "shortName": "F2+",
+                    "payload": {
+                        "ratekey": "gesamt",
+                        "value": "5"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [5]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_favorite_plus",
+                    "type": "tag",
+                    "name": "F2* Favorite*",
+                    "shortName": "F2*",
+                    "payload": {
+                        "ratekey": "gesamt",
+                        "value": "8"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [8]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_xxx_favorite",
+                    "type": "tag",
+                    "name": "A3*++ Fav 3+++",
+                    "shortName": "A3*++",
+                    "payload": {
+                        "ratekey": "gesamt",
+                        "value": "10"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "GE",
+                            "expectedValues": [10]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_milestone",
+                    "type": "tag",
+                    "name": "M4* Fav Meilenstein",
+                    "shortName": "M4*",
+                    "payload": {
+                        "value": "11",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [11]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_phantastic",
+                    "type": "tag",
+                    "name": "M5* Fav Phantastic",
+                    "shortName": "M5*",
+                    "payload": {
+                        "value": "14",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "GE",
+                            "expectedValues": [14]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_gesamt_reject",
+                    "type": "tag",
+                    "name": "\u274c Personal Gesamt Rejected",
+                    "shortName": "&#x274c",
+                    "payload": {
+                        "value": "-1",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [-1]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "albummedia_persRate_gesamt_reject",
+                    "type": "tag",
+                    "name": "\u274c Media Personal Gesamt Rejected",
+                    "shortName": "&#x274c",
+                    "payload": {
+                        "value": "-1",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "local_album_current",
+                    "type": "albumtag",
+                    "name": "local Album",
+                    "shortName": "&#x2764",
+                    "payload": {
+                        "albumkey": "Current"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "localalbum",
+                            "command": "CSVIN",
+                            "expectedValues": ["Current"]
+                        }
+                    ],
+                    "profileAvailability": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "mdocMaxItemsPerAlbum",
+                            "command": "GE",
+                            "expectedValues": [10]
+                        }
+                    ]
+                },
+                {
+                    "key": "link_download_image_store",
+                    "type": "link",
+                    "name": "Download Image Store",
+                    "shortName": "\uD83D\uDCE5",
+                    "payload": {
+                        "url": "http://localhost:6100/api/static/picturestore/x600/{{id}}",
+                        "target": "download",
+                        "replacements": {
+                            "id": "record.id"
+                        }
+                    },
+                    "showFilter": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["IMAGE", "image"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_download_image_static",
+                    "type": "link",
+                    "name": "Download Image Static",
+                    "shortName": "\uD83D\uDCE5",
+                    "payload": {
+                        "url": "http://localhost:6100/api/static/pictures/pics_x600/{{id}}",
+                        "target": "download",
+                        "replacements": {
+                            "id": "record.mdocimages[0].fileName"
+                        }
+                    },
+                    "showFilter": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["IMAGE", "image"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_download_video_static",
+                    "type": "link",
+                    "name": "Download Video Static",
+                    "shortName": "\uD83D\uDCE5",
+                    "payload": {
+                        "url": "http://localhost:6100/api/static/videos/video_x600/{{id}}",
+                        "target": "download",
+                        "replacements": {
+                            "id": "record.mdocvideos[0].fileName"
+                        }
+                    },
+                    "showFilter": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["VIDEO", "video"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_download_audio_static",
+                    "type": "link",
+                    "name": "Download Audio Static",
+                    "shortName": "\uD83D\uDCE5",
+                    "payload": {
+                        "url": "http://localhost:6100/api/static/audios/mp3/{{id}}",
+                        "target": "download",
+                        "replacements": {
+                            "id": "record.mdocaudios[0].fileName"
+                        }
+                    },
+                    "showFilter": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_download_mp3_store",
+                    "type": "link",
+                    "name": "Download MP3 Store",
+                    "shortName": "\uD83D\uDCE5",
+                    "payload": {
+                        "url": "http://localhost:6100/api/static/audiostore/mp3/{{id}}",
+                        "target": "download",
+                        "replacements": {
+                            "id": "record.id"
+                        }
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": [
+                                "dummy"
+                            ]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_google",
+                    "type": "link",
+                    "name": "Link to google",
+                    "shortName": "&#9432;G",
+                    "payload": {
+                        "url": "https://www.google.de/search?q=style {{artist}} {{name}}",
+                        "target": "google",
+                        "replacements": {
+                            "artist": "record.artist",
+                            "name": "record.name"
+                        }
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": [
+                                "dummy"
+                            ]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "link_discogs",
+                    "type": "link",
+                    "name": "Link to discogs",
+                    "shortName": "&#9432;D",
+                    "payload": {
+                        "url": "https://www.discogs.com/search/?type=all&layout=med&q={{artist}} {{name}}",
+                        "target": "discogs",
+                        "replacements": {
+                            "artist": "record.artist",
+                            "name": "record.name"
+                        }
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": [
+                                "dummy"
+                            ]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "assignplaylist",
+                    "type": "assignplaylist",
+                    "name": "\uD83D\uDCC1 Playlists",
+                    "shortName": "\uD83D\uDCC1",
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "payload": {
+                    },
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "edit",
+                    "type": "edit",
+                    "name": "Edit",
+                    "shortName": "&#x1f589",
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": [
+                                "dummy"
+                            ]
+                        }
+                    ],
+                    "profileAvailability": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio", "PLAYLIST", "playlist"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocWritable",
+                            "command": "EQ",
+                            "expectedValues": [
+                                true
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "keyword",
+                    "type": "keyword",
+                    "name": "\uD83C\uDFF7 Keyword",
+                    "shortName": "&#127991;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "assign",
+                    "type": "assign",
+                    "name": "\uD83D\uDD89 Assign",
+                    "multiRecordTag": true,
+                    "shortName": "&#x1f589;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "assignjoin",
+                    "type": "assignjoin",
+                    "name": "\uD83D\uDD89 AssignJoin",
+                    "multiRecordTag": true,
+                    "shortName": "&#x1f589;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "createBy",
+                    "type": "createBy",
+                    "name": "New Genre by Artist",
+                    "shortName": "->*Genre",
+                    "payload": {
+                        "type": "GENRE"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ARTIST", "artist"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "blocked",
+                    "type": "tag",
+                    "name": "\uD83D\uDEAB Block from public",
+                    "shortName": "&#x1F6AB",
+                    "payload": {
+                        "value": 3
+                    },
+                    "showFilter": [
+                        {
+                            "property": "blocked",
+                            "command": "GT",
+                            "expectedValues": [0]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "replace",
+                    "type": "replace",
+                    "name": "\uD83D\uDDD1 Replace",
+                    "shortName": "&#128465",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio", "PLAYLIST", "playlist"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "replaceAndAddArtistLink",
+                    "type": "replace",
+                    "name": "\uD83D\uDDD1 Replace and add ArtistLink",
+                    "shortName": "&#128465",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                }
+            ]
+        },
+        "mdoc-multiactionheader": {
+            "actionTags": [
+                {
+                    "key": "playlists_favorites",
+                    "type": "tag",
+                    "name": "F2* Favorites",
+                    "shortName": "F2*",
+                    "payload": {
+                        "playlistkey": "Favorites",
+                        "mdocratepers.gesamt": "5"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_favorites_plus",
+                    "type": "tag",
+                    "name": "F2*+ Favorites+",
+                    "shortName": "F2*+",
+                    "payload": {
+                        "playlistkey": "Favorites",
+                        "mdocratepers.gesamt": "6"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Favorites"]
+                        },
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [6]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_album_favorites",
+                    "type": "tag",
+                    "name": "F3* Album Favorites",
+                    "shortName": "F3*",
+                    "payload": {
+                        "playlistkey": "Album_Favorites",
+                        "mdocratepers.gesamt": "8"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Album_Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "playlists_artist_favorites",
+                    "type": "tag",
+                    "name": "F3++ Artist Favorites",
+                    "shortName": "F3++",
+                    "payload": {
+                        "playlistkey": "Artist_Favorites",
+                        "mdocratepers.gesamt": "9"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "playlists",
+                            "command": "CSVIN",
+                            "expectedValues": ["Artist_Favorites"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_xxxx_favorite",
+                    "type": "tag",
+                    "name": "A3*++ Fav 3+++",
+                    "shortName": "A3*++",
+                    "payload": {
+                        "ratekey": "gesamt",
+                        "value": "10"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "GE",
+                            "expectedValues": [10]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_milestone",
+                    "type": "tag",
+                    "name": "M4* Fav Meilenstein",
+                    "shortName": "M4*",
+                    "payload": {
+                        "value": "11",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "GE",
+                            "expectedValues": [11]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_phantastic",
+                    "type": "tag",
+                    "name": "M5* Fav Phantastic",
+                    "shortName": "M5*",
+                    "payload": {
+                        "value": "14",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "GE",
+                            "expectedValues": [14]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "persRate_gesamt_reject",
+                    "type": "tag",
+                    "name": "\u274c Personal Gesamt Rejected",
+                    "shortName": "&#x274c",
+                    "payload": {
+                        "value": "-1",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "mdocratepers.gesamt",
+                            "command": "EQ",
+                            "expectedValues": [-1]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "albummedia_persRate_gesamt_reject",
+                    "type": "tag",
+                    "name": "\u274c Media Personal Gesamt Rejected",
+                    "shortName": "&#x274c",
+                    "payload": {
+                        "value": "-1",
+                        "ratekey": "gesamt"
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "m3uplaylistexport",
+                    "type": "m3uplaylistexport",
+                    "name": "M3U-Playlist",
+                    "shortName": "M3U-Playlist",
+                    "multiRecordTag": true,
+                    "payload": {
+                    },
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                    ]
+                },
+                {
+                    "key": "local_album_current",
+                    "type": "albumtag",
+                    "name": "set local Album",
+                    "shortName": "&#x2764",
+                    "payload": {
+                        "albumkey": "Current",
+                        "set": true
+                    },
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                        {
+                            "property": "type",
+                            "command": "NEQ",
+                            "expectedValues": ["albumpage"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "mdocMaxItemsPerAlbum",
+                            "command": "GE",
+                            "expectedValues": [10]
+                        }
+                    ]
+                },
+                {
+                    "key": "unset_local_album_current",
+                    "type": "albumtag",
+                    "name": "unset local Album",
+                    "shortName": "&#x2764",
+                    "payload": {
+                        "albumkey": "Current",
+                        "set": false
+                    },
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "mdocMaxItemsPerAlbum",
+                            "command": "GE",
+                            "expectedValues": [10]
+                        }
+                    ]
+                },
+                {
+                    "key": "set_playlists_all",
+                    "type": "tag",
+                    "name": "Playlists",
+                    "shortName": "Playlists",
+                    "payload": {
+                        "playlistkey": ""
+                    },
+                    "flgUseInput": false,
+                    "inputFieldName": "playlistkey",
+                    "flgUseSelect": true,
+                    "selectParameterValueListKey": "playlists",
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ],
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                        {
+                            "property": "type",
+                            "command": "NEQ",
+                            "expectedValues": ["albumpage"]
+                        }
+                    ]
+                },
+                {
+                    "key": "unset_playlists_all",
+                    "type": "tag",
+                    "name": "Unset Playlists",
+                    "shortName": "Unset Playlists",
+                    "payload": {
+                        "playlistkey": ""
+                    },
+                    "flgUseInput": false,
+                    "inputFieldName": "playlistkey",
+                    "flgUseSelect": true,
+                    "selectParameterValueListKey": "playlists",
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ],
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                        {
+                            "property": "type",
+                            "command": "NEQ",
+                            "expectedValues": ["albumpage"]
+                        }
+                    ]
+                },
+                {
+                    "key": "set_keywords_input",
+                    "type": "tag",
+                    "name": "Keywords",
+                    "shortName": "KW",
+                    "payload": {
+                        "keywords": ""
+                    },
+                    "flgUseInput": true,
+                    "inputFieldName": "keywords",
+                    "flgUseSelect": true,
+                    "selectParameterConstants": [
+                        ["KW_Langsam", "Langsam"],
+                        ["KW_MidTemp", "MidTemp"],
+                        ["KW_Schnell", "Schnell"]
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ],
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                    ]
+                },
+                {
+                    "key": "unset_keywords_input",
+                    "type": "tag",
+                    "name": "Unset Keywords",
+                    "shortName": "KW",
+                    "payload": {
+                        "keywords": ""
+                    },
+                    "flgUseInput": true,
+                    "inputFieldName": "keywords",
+                    "flgUseSelect": false,
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ],
+                    "showFilter": [
+                    ],
+                    "profileAvailability": [
+                    ]
+                },
+                {
+                    "key": "keyword",
+                    "type": "keyword",
+                    "name": "\uD83C\uDFF7 Keyword",
+                    "shortName": "&#127991;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "assign",
+                    "type": "assign",
+                    "name": "\uD83D\uDD89 Assign",
+                    "multiRecordTag": true,
+                    "shortName": "&#x1f589;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "assignjoin",
+                    "type": "assignjoin",
+                    "name": "\uD83D\uDD89 AssignJoin",
+                    "multiRecordTag": true,
+                    "shortName": "&#x1f589;",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "blocked",
+                    "type": "tag",
+                    "name": "\uD83D\uDEAB Block from public",
+                    "shortName": "&#x1F6AB",
+                    "payload": {
+                        "value": 3
+                    },
+                    "showFilter": [
+                        {
+                            "property": "blocked",
+                            "command": "GT",
+                            "expectedValues": [0]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "replace",
+                    "type": "replace",
+                    "name": "\uD83D\uDDD1 Replace",
+                    "shortName": "&#128465",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["GENRE", "genre", "ARTIST", "artist", "ALBUM", "album", "AUDIO", "audio"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                },
+                {
+                    "key": "replaceAndAddArtistLink",
+                    "type": "replace",
+                    "name": "\uD83D\uDDD1 Replace and add ArtistLink",
+                    "shortName": "&#128465",
+                    "payload": {
+                    },
+                    "showFilter": [
+                        {
+                            "property": "dummy",
+                            "command": "EQ",
+                            "expectedValues": ["dummy"]
+                        }
+                    ],
+                    "recordAvailability": [
+                        {
+                            "property": "type",
+                            "command": "CSVIN",
+                            "expectedValues": ["ALBUM", "album"]
+                        }
+                    ],
+                    "configAvailability": [
+                        {
+                            "property": "permissions.mdocActionTagWritable",
+                            "command": "EQ",
+                            "expectedValues": [true]
+                        }
+                    ]
+                }
+            ]
+        },
+        "mdoc-showpage": {
+            "showBigImages": false,
+            "allowedQueryParams": [],
+            "availableTabs": {
+                "ALBUM": true,
+                "ARTIST": true,
+                "AUDIO": true,
+                "AUDIO_FAVORITES": true,
+                "GENRE": true,
+                "PLAYLIST": true
+            }
+        },
+        "mdoc-albumpage": {
+            "allowAutoplay": true,
+            "m3uAvailable": true
+        },
+        "pdoc-sectionpage": {
+            "availableTabs": {
+                "ALBUM": true,
+                "ARTIST": true,
+                "AUDIO": true,
+                "GENRE": true,
+                "PLAYLIST": true
+            },
+            "availableToDoDashboardRows": {
+                "noSubType": true,
+                "noGenre": true,
+                "unrated": true,
+                "todoKeywords": true,
+                "doublettes": true,
+                "unRatedChildren": true,
+                "noMainFavoriteChildren": true,
+                "conflictingRates": true
+            },
+            "availableDoneDashboardRows": {
+                "rated": true,
+                "rejected": true,
+                "noFavoriteChildren": true
+            }
+        },
+        "cdoc-extended-object-properties":  {
+            "allowedExtendedObjectProperties": {
+                "list-item-flat-big": ["AUDIO_COUNT", "AUDIO_TOP_COUNT", "AUDIO_FAV_COUNT", "ARTIST_COUNT", "ALBUM_COUNT"],
+                "show-big": ["AUDIO_COUNT", "AUDIO_TOP_COUNT", "AUDIO_FAV_COUNT", "ARTIST_COUNT", "ALBUM_COUNT"]
+            },
+            "modes": {
+                "list-item-flat-big": "short",
+                "show-big": "long"
+            }
+        }
+    },
+    "services": {
+        "seo": {
+            "mdocIndexableTypes": [""]
+        },
+        "serverItemExport": {
+            "maxAllowedM3UItems": 100000
+        },
+        "adminJobArea": {
+            "jobsAllowed": true
+        },
+        "htmlTogglerRenderer": {
+            "doAllBlockToggler": {
+                "visibility": false
+            },
+            "appendToggler": [
+            ]
+        },
+        "global": {
+            "TODO set this to hide: hideCopyrightFooter": true
+        }
+    }
+}

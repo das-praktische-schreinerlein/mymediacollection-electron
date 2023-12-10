@@ -1,15 +1,53 @@
 {
     "profile": "dev",
     "filePathPDocJson": "../../../config/pdocs.json",
+    "filePathThemeFilterJson": "../../../config/themeFilterConfig.json",
+    "apiAudioServerEnabled": true,
+    "apiImageServerEnabled": true,
+    "apiVideoServerEnabled": true,
+    "apiAnonymizeMedia": false,
+    "apiRouteVideos": "/videos/",
+    "apiRouteAudios": "/audios/",
+    "apiRouteAudiosStaticDir": "../../../filestore/Musike",
+    "apiRouteAudiosStaticEnabled": true,
+    "apiRoutePicturesStaticDir": "../../../filestore/Bilder/",
+    "apiRoutePicturesStaticEnabled": true,
+    "apiRouteVideosStaticDir": "../../../filestore/Videos/",
+    "apiRouteVideosStaticEnabled": true,
+    "apiRouteStoredAudios": "/audiostore/",
+    "apiRouteStoredPictures": "/picturestore/",
+    "apiRouteStoredPicturesResolutionPrefix": "pics_",
+    "apiRouteStoredVideos": "/videostore/",
+    "apiRouteStoredVideosResolutionPrefix": "video_",
+    "playlistExportAudioBaseUrl": "http://localhost:6100/api/static/audios/",
+    "playlistExportImageBaseUrl": "http://localhost:6100/api/static/pictures/",
+    "playlistExportVideoBaseUrl": "http://localhost:6100/api/static/videos/",
+    "playlistExportUseAudioAssetStoreUrls": false,
+    "playlistExportUseImageAssetStoreUrls": true,
+    "playlistExportUseVideoAssetStoreUrls": false,
+    "playlistExportMaxM3uRecordAllowed": 100000,
+    "proxyVideosRouteToUrl": "http://localhost/michas/",
     "nodejsBinaryPath": "..\\..\\..\\sbin\\node-cli.bat",
     "inlineJsPath": "dist/backend/create-allinone-html.js",
+    "mapperConfig": {
+        "allowedKeywordPatterns": ["KW_.*", "Genre_*", "Artist_*"],
+        "replaceKeywordPatterns": []
+    },
+    "mdocDataStoreAdapter": "MediaDocSqlMediadbAdapter",
+    "mdocWritable": true,
+    "MediaDocSqlMediadbAdapter": {
+        "client": "sqlite3",
+        "connection": {
+            "filename": "../../../database/mymmdb.dev.sqlite"
+        }
+    },
     "startPDocApi": true,
     "pdocDataStoreAdapter": "PDocSqlAdapter",
     "pdocWritable": true,
     "PDocSqlAdapter": {
         "client": "sqlite3",
         "connection": {
-            "filename": "../../../database/myshp.dev.sqlite"
+            "filename": "../../../database/mymmdb.dev.sqlite"
         },
         "facetCacheUsage": {
             "active": false,
@@ -27,7 +65,7 @@
     },
     "cacheConfig": {
     },
-    "port": 5100,
+    "port": 6100,
     "bindIp": "127.0.0.1",
     "corsOrigin": true
 }
