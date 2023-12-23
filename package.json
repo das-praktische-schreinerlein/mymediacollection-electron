@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "MyCmsElectron-Builder",
   "config": {
-    "mycmsgiturl": "F:\\Projekte\\mymediacollection_dev\\.git",
-    "mycmsgitversion": "working",
-    "XXXXXmycmsgiturl": "https://github.com/das-praktische-schreinerlein/mymediacollection.git",
-    "XXXXXmycmsgitversion": "1.0.0"
+    "mycmsgiturl": "https://github.com/das-praktische-schreinerlein/mymediacollection.git",
+    "mycmsgitversion": "1.0.0"
   },
   "scripts": {
     "all": "npm install && npm run install-appbackend && npm run all-apponly",
