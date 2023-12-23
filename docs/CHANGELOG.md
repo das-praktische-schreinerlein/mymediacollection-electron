@@ -2,7 +2,7 @@
  
 # Versions
  
-## 1.0.0
+## 1.0.0 (2023-12-23)
 - initial version bases on mysimplehomepage-electron 2.0.0 and mymediacollection 1.0.0
 
 ### new features
