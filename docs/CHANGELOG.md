@@ -3,7 +3,7 @@
 # Versions
  
 ## 1.0.0
-- initial version bases on mysimplehomepage-electron 1.1.0 and mymediacollection 1.0.0
+- initial version bases on mysimplehomepage-electron 2.0.0 and mymediacollection 1.0.0
 
 ### new features
 - none
